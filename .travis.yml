@@ -1,9 +1,15 @@
 language: node_js
 node_js:
   - '12.6'
-before_install: 'echo "before install"'
-before_script: 'echo "before script"'
-install: 'echo "install"'
+before_install: echo "before install"
+before_script: echo "before script"
+install: echo "install"
 env:
   global:
     - ADAM=test1
+deploy:
+  provider: heroku
+  api_key:
+    secure: eADV+kG4SisPHH8vZ95m8N8/a9Se56wFoLATnplPvfRK7yc+ATJTyYrPRKbSZ2Ojmel/4w5txj/8ywxDmwGNbb/yLhFb8hy7rTvC8B6wCqxICh8hNMem09vZN4kU9a4ru4JXhhcs2yHAgXJJ502qChNmyPsKT+2gCVypSzZtYrpSG20+fj5xB1mNE+qUWNjF86RbFzV8/SgBdDwGKaXWlueT235LPoohVUxR7nVq9o9wjGXXsU+/v6Mz4AO+O5/aHuXZQ0cFQnzev9e3dXy1FQYaVD5U1C2e68KVwewit8TxGlum5r4icXGoBVQcgHht0KFTlm9VLFeda9GVQl0t/Sc4zZIoVXavo0195HHBiA1op4Jcigtsoek12CK98EsFUprL90c78qc81YxLwvPLKDHgybEbrIbz6/N3NPOz1o41IhyCXwHhRpt222wQyfDqMIDP0NRqvUzVQvshpaDkjpcN1XUGtJAlacP3QffoBP4CnJyPtIsvEjodgV7ix42XQg5fDHd5zoKjpKWsKaADoE7HuhHwoZe98wJP3SyKj9QaQVb08CHlC8+p0yse0FEPc799nvmzx08wSHpAL1fbljFcDt4QOFxnKTrBzbOneqFVk32sJ6BLm4M+AbEJrzCG3Fb8b6QB2efyqJVmBnD6hWMWGieqcH6BTy/L+6uzAmk=
+  app: tweeter-api-app
+  skip_cleanup: true
