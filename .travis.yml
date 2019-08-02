@@ -5,6 +5,8 @@ before_install: 'echo "before install"'
 before_script: 'echo "before script"'
 install: 'echo "install"'
 env:
-  - TEST=1
-  - TEST2=2
-  - TEST3=3
+  global:
+    - ADAM=test1
+  matrix:
+    - PUBLICATION=bt APPNAME_STAGE=$HP4T_HEROKU_APPNAME_STAGE_BT APPNAME_PROD=$HP4T_HEROKU_APPNAME_PRODUCTION_BT
+    - PUBLICATION=pub APPNAME_STAGE=$HP4T_HEROKU_APPNAME_STAGE_PUB APPNAME_PROD=$HP4T_HEROKU_APPNAME_PRODUCTION_PUB
