@@ -1,8 +1,6 @@
 language: node_js
-
 node_js:
   - '12.6'
-
 addons:
   apt:
     sources:
@@ -10,15 +8,19 @@ addons:
       - heroku
     packages:
       - heroku
-
 cache:
   apt: true
   directories:
     - node_modules
-
 env:
   global:
     - ADAM=test1
+    # $HEROKU_API_TOKEN
+    - secure: HGXMsMxN3QwM1OgSArAh4l21Y63nYOpQ3erv9h2OTACPwLkAKG/ter0cCBxNqDdFNWsawa3Wffw3pg0phKrYlbCoQnCvq6gCjkCCnj30dUIo6EU/CPiQgzCrPCyKxrD4VXcJvMUSfjbtX86gGWHriNppB2VAh3715DFHsPSLSRev4NUANlzIY0yMqlFJRG6O4hEOfrNcWGB6BKSZB9V2pMB/90Cms12VP2IIxe4pImuDnK+0DVFZG2Ysp6RKos/oyIDQVo4KrHE2sQUer4InY43FwebcWvmix0RKtaX8mnAWOvS0w8BnAJIn/mDNvxKPYKbs7l6r5BKiwh/mvn5WiJ+1GKGcPTWwc/zuta0vvISQ6ySWoBhVAumWWda96cpMfN+UDz8evrA+srLHiT0aY5ALWRiL2OkfOPdkhkF2QDbrjCIYMiWDD1FQlBAkxkA/gW5MGpT/n/w7j1zkAUnDWSR2uEvG3zimX6vfzvfil8pNtb3q3K4l9APmVhlI9eUnDQIz8u1KFHQF6dRPiknLaCqhhXseIr/L16eAfEAKkVRyb/KMHJ16MO7rstT9O/f7UJl4lWVfpau++xvFRsjQz+jX/+baja/5/vvO+9FO7prmzmjvJWq9vkC8x6LpuF9kkqSf/IFLxBAhDEjpr1L7zEPAJC/WvG4/CsjV0h5zHJc=
+before_install:
+  - echo "Set Heroku credentials"
+  - netrc_content="machine api.heroku.com\n  login git\n  password $HEROKU_API_TOKEN"
+  - echo -e $netrc_content >> ~/.netrc
 
 deploy:
   - provider: heroku
@@ -27,7 +29,6 @@ deploy:
     app: tweeter-api-app
     on:
       repo: sanjiisan/twitter-api-app
-
   - provider: script
     skip_cleanup: true
     on:
